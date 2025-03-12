@@ -25,6 +25,18 @@ final class DogAPITests: XCTestCase {
         XCTAssertEqual(breeds, ["affenpinscher":[],"african":[],"airedale":[],"akita":[],"appenzeller":[],"australian":["kelpie","shepherd"]])
     }
 
+    func test_fetchAllSubBreeds_success_allSubBreeds() async throws {
+        // given the all sub-breeds request will succeed
+        let url = URL(string: "https://dog.ceo/api/breed/hound/list")!
+        let expectedResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let expectedData = #"{"message":["afghan","basset","blood","english","ibizan","plott","walker"],"status":"success"}"#.data(using: .utf8)!
+        MockURLProtocol.expect(.init(data: expectedData, response: expectedResponse), for: url)
+        // when user requests all sub-breeds for a breed
+        let subBreeds = try await api.fetchAllSubBreeds(breed: "hound")
+        // then all sub-breeds are returned
+        XCTAssertEqual(subBreeds, ["afghan","basset","blood","english","ibizan","plott","walker"])
+    }
+
     func test_fetchRandomImage_success_randomImage() async throws {
         // given random image request will succeed
         let url = URL(string: "https://dog.ceo/api/breeds/image/random")!

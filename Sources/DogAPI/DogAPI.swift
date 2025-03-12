@@ -20,6 +20,13 @@ public struct DogAPI {
         try await client.fetch(.allBreeds)
     }
 
+    /// Fetch list of all sub-breeds for a breed
+    /// - Parameter breed: breed to fetch sub-breeds for
+    /// - Returns: list of sub-breeds for the breed
+    public func fetchAllSubBreeds(breed: DogBreed) async throws -> [DogSubBreed] {
+        try await client.fetch(.allSubBreeds(breed))
+    }
+
     /// Fetch single random image from all dogs collection
     /// - Returns: URL of random dog image
     public func fetchRandomImage() async throws -> DogURL {
