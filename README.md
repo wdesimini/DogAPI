@@ -17,7 +17,7 @@ To use DogAPI in your Swift project, add the following dependency to your `Packa
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/wilsondesimini/DogAPI.git", from: "1.0.0")
+    .package(url: "https://github.com/wilsondesimini/DogAPI.git", from: "1.1.0")
 ]
 ```
 
