@@ -24,7 +24,7 @@ enum DogAPIEndpoint {
         case .allBreeds:
             "breeds/list/all"
         case .allSubBreeds(let breed):
-            "breeds/\(breed)/list"
+            "breed/\(breed)/list"
         case .randomImage:
             "breeds/image/random"
         case .randomImages(let count):

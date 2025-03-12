@@ -30,14 +30,17 @@ import DogAPI
 let dogAPI = DogAPI()
 ```
 
-### Fetch All Breeds
+### Fetch Breeds & Sub-Breeds
 ```swift
 do {
-    // fetch list of all breeds and sub-breeds
+    // fetch list of all breeds
     let breeds = try await dogAPI.fetchAllBreeds()
     print(breeds)
+    // fetch list of all sub-breeds of a breed
+    let subBreeds = try await dogAPI.fetchAllSubBreeds(breed: "retriever")
+    print(subBreeds)
 } catch {
-    print("Error fetching breeds: \(error)")
+    print("Error fetching breeds & sub-breeds: \(error)")
 }
 ```
 
