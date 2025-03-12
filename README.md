@@ -23,19 +23,17 @@ dependencies: [
 
 ## Usage
 
-### Importing DogAPI
-```swift
-import DogAPI
-```
-
 ### Initialize DogAPI
 ```swift
+import DogAPI
+
 let dogAPI = DogAPI()
 ```
 
-### Fetching All Breeds
+### Fetch All Breeds
 ```swift
 do {
+    // fetch list of all breeds and sub-breeds
     let breeds = try await dogAPI.fetchAllBreeds()
     print(breeds)
 } catch {
@@ -43,53 +41,51 @@ do {
 }
 ```
 
-### Fetch a Random Dog Image
+### Fetch Random Images
 ```swift
 do {
+    // fetch a random image from all dogs collection
     let imageURL = try await dogAPI.fetchRandomImage()
     print(imageURL)
+    // fetch multiple random images from all dogs collection
+    let imageURLs = try await dogAPI.fetchRandomImages(count: 3)
+    print(imageURLs)
 } catch {
-    print("Error fetching random image: \(error)")
+    print("Error fetching random images: \(error)")
 }
 ```
 
-### Fetch Multiple Random Images
+### Fetch Breed Images
 ```swift
 do {
-    let images = try await dogAPI.fetchRandomImages(count: 3)
-    print(images)
-} catch {
-    print("Error fetching images: \(error)")
-}
-```
-
-### Fetch Images for a Specific Breed
-```swift
-do {
-    let breedImages = try await dogAPI.fetchImages(breed: "goldenretriever")
-    print(breedImages)
-} catch {
-    print("Error fetching breed images: \(error)")
-}
-```
-
-### Fetch a Random Image for a Specific Breed
-```swift
-do {
-    let breedImage = try await dogAPI.fetchRandomImage(breed: "goldenretriever")
+    // fetch all images from a breed collection
+    let allBreedImages = try await dogAPI.fetchImages(breed: "retriever")
+    print(allBreedImages)
+    // fetch a random image from a breed collection
+    let breedImage = try await dogAPI.fetchRandomImage(breed: "retriever")
     print(breedImage)
-} catch {
-    print("Error fetching breed random image: \(error)")
-}
-```
-
-### Fetch Multiple Random Images for a Breed
-```swift
-do {
-    let breedImages = try await dogAPI.fetchRandomImages(breed: "goldenretriever", count: 3)
+    // fetch multiple random images from a breed collection
+    let breedImages = try await dogAPI.fetchRandomImages(breed: "retriever", count: 3)
     print(breedImages)
 } catch {
     print("Error fetching breed images: \(error)")
+}
+```
+
+### Fetch Sub-Breed Images
+```swift
+do {
+    // fetch all images from a sub-breed collection
+    let allSubBreedImages = try await dogAPI.fetchImages(breed: "retriever", subBreed: "golden")
+    print(allSubBreedImages)
+    // fetch a random image from a sub-breed collection
+    let subBreedImage = try await dogAPI.fetchRandomImage(breed: "retriever", subBreed: "golden")
+    print(subBreedImage)
+    // fetch multiple random images from a sub-breed collection
+    let subBreedImages = try await dogAPI.fetchRandomImages(breed: "retriever", subBreed: "golden", count: 3)
+    print(subBreedImages)
+} catch {
+    print("Error fetching sub-breed images: \(error)")
 }
 ```
 
